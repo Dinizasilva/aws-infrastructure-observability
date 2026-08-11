@@ -54,6 +54,7 @@ A arquitetura abaixo representa a integração dos principais serviços AWS util
 </p>
 
 
+
 ## Tech Stack & Lab Architecture 
 
 AWS Services
@@ -63,6 +64,22 @@ AWS Services
 <img src="https://img.shields.io/badge/Amazon%20EC2-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/Amazon%20CloudWatch-FF4F8B?style=for-the-badge&logo=amazoncloudwatch&logoColor=white"> <img src="https://img.shields.io/badge/CloudWatch%20Logs-FF4F8B?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/CloudWatch%20Agent-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/AWS%20Systems%20Manager-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/Amazon%20SNS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/Amazon%20EventBridge-FF4F8B?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/AWS%20Config-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/Amazon%20EBS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/IAM-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
 
 </p>
+
+### Technologies & Components
+
+Component	                  Application in the Lab
+
+Amazon EC2	                 Web Server utilizado como recurso principal monitorado
+Apache HTTPD	               Servidor Web responsável pela geração dos logs
+CloudWatch Agent            Coleta dos logs do Apache diretamente da instância
+CloudWatch                  Logs	Armazenamento e análise dos eventos coletados
+Amazon EventBridge	         Detecção de eventos relacionados à infraestrutura
+Amazon SNS	                 Envio de notificações
+AWS Systems Manager	        Gerenciamento da instância e troubleshooting
+AWS Config	                 Avaliação da conformidade dos recursos
+Amazon EBS	                 Volumes avaliados pelas regras de conformidade
+IAM	                        Controle de permissões e acesso aos recursos
+
 
 ### Serviços AWS utilizados
 
@@ -134,21 +151,12 @@ Essa etapa estabeleceu a base para as atividades de observabilidade realizadas n
 
 Nesta etapa foi implementado um mecanismo para detectar alterações no estado da infraestrutura e gerar notificações.
 
-O fluxo configurado foi:
+<p align="center">
+  <img src="eventbridge_sns_flow.png"
+       alt="Fluxo de eventos entre Amazon EC2, EventBridge, Amazon SNS e e-mail"
+       width="650">
+</p>
 
-Amazon EC2
-     │
-     ▼
-EventBridge / CloudWatch Events
-     │
-     ▼
-Regra de evento
-     │
-     ▼
-Amazon SNS
-     │
-     ▼
-E-mail
 
 
 A regra foi configurada para identificar alterações nos estados:
