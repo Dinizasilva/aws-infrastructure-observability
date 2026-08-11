@@ -18,6 +18,7 @@ AWS infrastructure monitoring, log management, event-driven notifications, compl
        width="650">
 </p>
 
+
 ## Sobre o laboratório
 
 O LAB 186 — Monitorar a Infraestrutura AWS apresenta, na prática, como utilizar serviços da AWS para monitorar recursos computacionais, coletar e analisar logs, identificar eventos operacionais, gerar notificações e avaliar a conformidade da infraestrutura.
@@ -25,6 +26,7 @@ O LAB 186 — Monitorar a Infraestrutura AWS apresenta, na prática, como utiliz
 Durante o laboratório, uma instância Amazon EC2 Web Server foi utilizada como recurso principal para demonstrar um cenário integrado de monitoramento e observabilidade.
 
 A atividade envolveu a integração de diferentes serviços da AWS, permitindo acompanhar o ambiente desde a geração dos eventos no servidor até sua coleta, análise, notificação e avaliação de conformidade.
+
 
 ## Principais componentes
 
@@ -65,6 +67,7 @@ AWS Services
 
 </p>
 
+
 ### Technologies & Components
 
 Component	                  Application in the Lab
@@ -89,9 +92,11 @@ Problema → Investigação → Correção → Validação
 
 Esse ciclo de troubleshooting foi um dos principais aprendizados práticos desenvolvidos durante o laboratório.
 
+
 ## Tarefas Executadas
 
 O laboratório foi desenvolvido em cinco etapas, integrando monitoramento, observabilidade, coleta de logs, notificações, gerenciamento e conformidade em um ambiente AWS.
+
 
 ## 1 - Monitoramento da infraestrutura
 
@@ -109,6 +114,7 @@ Arquivos de log;
 Configurações da infraestrutura.
 
 Essa etapa estabeleceu a base para as atividades de observabilidade realizadas nas etapas seguintes.
+
 
 
 ## 2️ - Monitoramento e notificações
@@ -130,6 +136,7 @@ terminated
 O Amazon SNS foi utilizado como mecanismo de entrega das notificações.
 
 O objetivo foi demonstrar como eventos operacionais podem ser detectados e encaminhados automaticamente para os responsáveis pelo ambiente.
+
 
 
 ## 3 - Coleta e monitoramento dos logs
@@ -180,6 +187,7 @@ Foram observados diferentes códigos de resposta, incluindo:
 400 — requisição inválida.
 
 
+
 ## 4 -Notificações em tempo real
 
 A quarta etapa teve como objetivo validar o mecanismo de reação a alterações no estado da infraestrutura.
@@ -207,6 +215,7 @@ Notificação
 
 
 Essa configuração demonstra como eventos operacionais podem ser utilizados para criar mecanismos de alerta em ambientes AWS.
+
 
 
 ## 5️ - Monitoramento da conformidade
@@ -250,6 +259,7 @@ O comportamento foi analisado como uma restrição de permissões do ambiente de
 Na avaliação de políticas IAM da AWS, uma negação explícita (Deny) prevalece sobre uma permissão (Allow). Portanto, mesmo que existisse uma permissão permitindo determinada ação, um Deny aplicável à solicitação resultaria em acesso negado.
 
 
+
 ## Evidência
 
 A captura abaixo registra a mensagem de negação de permissão observada durante a execução:
@@ -285,6 +295,7 @@ Em seguida, foram ajustadas as permissões: sudo chmod 750 /var/log/httpd
 O acesso foi então validado utilizando o usuário cwagent: sudo -u cwagent tail -n 3 /var/log/httpd/access_log
 
 Os registros passaram a ser acessíveis corretamente.
+
 
 ## Reinicialização do agente
 
@@ -403,6 +414,7 @@ Troubleshooting	- Realizado
 
 ## Principais aprendizados
 
+
 O laboratório permitiu desenvolver conhecimentos práticos em:
 
 Cloud Computing;
@@ -468,7 +480,7 @@ Eliana Diniz
 
 Estudos e práticas em: Cloud Computing | AWS | Infraestrutura | Observabilidade | Troubleshooting
 
-LinkedIn: Eliana Diniz
+LinkedIn: www.linkedin.com/in/eliana-diniz
 
 
 ## Direção visual e imagens
