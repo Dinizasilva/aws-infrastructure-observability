@@ -159,14 +159,7 @@ Uma Log Stream associada à instância EC2 foi utilizada para receber os eventos
 
 O fluxo implementado foi:
 
-
-```html
-<div align="center">
-  <img src
-="apache-cloudwatch-logs-pipeline.png" width="500">
-</div>
-```
-
+<div align="center"> <img src ="apache-cloudwatch-logs-pipeline.png" width="500"> </div>
 
 
 A validação confirmou a chegada de eventos HTTP reais ao CloudWatch Logs.
