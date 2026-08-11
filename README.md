@@ -159,22 +159,7 @@ Uma Log Stream associada à instância EC2 foi utilizada para receber os eventos
 
 O fluxo implementado foi:
 
-Apache HTTPD
-     │
-     ▼
-access_log
-     │
-     ▼
-CloudWatch Agent
-     │
-     ▼
-CloudWatch Logs
-     │
-     ▼
-HttpAccessLog
-     │
-     ▼
-Log Stream
+![Apache to CloudWatch Logs Pipeline](apache-cloudwatch-logs-pipeline.png "Visualização da arquitetura de logs")
 
 
 A validação confirmou a chegada de eventos HTTP reais ao CloudWatch Logs.
