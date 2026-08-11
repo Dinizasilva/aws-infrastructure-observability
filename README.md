@@ -81,24 +81,7 @@ Amazon EBS	                 Volumes avaliados pelas regras de conformidade
 IAM	                        Controle de permissões e acesso aos recursos
 
 
-### Serviços AWS utilizados
 
-> Modern, observable, and automated infrastructure blueprint built on AWS.
-
-| Capability / Service    | Role & Architecture Function |           Modern Implementation                                                            |
-| :---                    | :---                         | :---                                                                                       |
-| **Amazon EC2**          | Primary Monitored Target     | Ubuntu LTS Node running Apache HTTP Server (`t3.micro` / Auto-Recoverable)                 |
-| **Amazon CloudWatch**   | Observability & Telemetry    | Unified Metrics, Dashboards, and Composite Alarms for proactive health tracking            |
-| **CloudWatch Logs**     | Log Analytics & Retention    | Centralized stream indexing, JSON parsing, and real-time query insights                    |
-| **CloudWatch Agent**    | Edge Telemetry Collector     | Lightweight daemon streaming OS-level metrics and custom log groups                        |
-| **AWS Systems Manager** | Secure Fleet Operations      | Session Manager (Zero-SSH architecture), Patch Manager, and Run Command automation         |
-| **Amazon SNS**          | Event Distribution Backbone  | Encrypted Topics routing operational alerts to downstream consumers (Email/Slack/Webhooks) |
-| **Amazon EventBridge**  | Serverless Event Bus         | Real-time state-change filtering and automated routing rules                               |
-| **AWS Config**          | Compliance & Guardrails      | Continuous resource evaluation against security frameworks and best practices              |
-| **Amazon EBS**          | Block Storage & Evaluation   | Encrypted `gp3` volumes audited for compliance, backup status, and encryption-at-rest      |
-| **IAM**                 | Identity & Access Governance | Least-privilege IAM Roles, Instance Profiles, and granular service policies                |
-
----
 
 ## Objetivos do laboratório
 
