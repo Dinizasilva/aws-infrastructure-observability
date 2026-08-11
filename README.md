@@ -383,21 +383,21 @@ Troubleshooting	- Realizado
 
 O laboratório permitiu desenvolver conhecimentos práticos em:
 
-Cloud Computing;
-Amazon EC2;
-Monitoramento com Amazon CloudWatch;
-Gerenciamento e análise de logs;
-Configuração do CloudWatch Agent;
-AWS Systems Manager;
-Amazon EventBridge;
-Amazon SNS;
-AWS Config;
-Amazon EBS;
-IAM e análise de permissões;
-Troubleshooting;
-Observabilidade;
-Conformidade;
-Monitoramento de aplicações Web.
+- **Cloud Computing**
+- **Amazon EC2**
+- **Monitoramento com Amazon CloudWatch**
+- **Gerenciamento e análise de logs**
+- **Configuração do CloudWatch Agent**
+- **AWS Systems Manager**
+- **Amazon EventBridge**
+- **Amazon SNS**
+- **AWS Config**
+- **Amazon EBS**
+- **IAM e análise de permissões**
+- **Troubleshooting**
+- **Observabilidade**
+- **Conformidade**
+- **Monitoramento de aplicações Web**
 
 
 ## O que este laboratório demonstra
