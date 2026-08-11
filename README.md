@@ -284,18 +284,13 @@ A captura abaixo registra a mensagem de negação de permissão observada durant
 <p align="center"> <img src="permissao_negada.png" alt="Restrição de permissão durante a configuração do AWS Config" width="750"> </p>
 
 Observação: a evidência demonstra uma restrição de autorização existente no ambiente de laboratório. Ela não caracteriza, por si só, uma falha do serviço AWS Config.
-
-##                                                                                                                                                                                                                   Troubleshooting — CloudWatch Agent
+                                                                                                                                                     Troubleshooting — CloudWatch Agent
 
 Durante a configuração do CloudWatch Agent, o serviço estava instalado e em execução, porém os logs do Apache não estavam chegando corretamente ao CloudWatch Logs.
 
-A primeira validação foi realizada com:
+A primeira validação foi realizada com: sudo systemctl is-active amazon-cloudwatch-agent
 
-sudo systemctl is-active amazon-cloudwatch-agent
-
-Resultado:
-
-active
+Resultado: active
 
 Isso confirmou que o agente estava em execução.
 
@@ -303,48 +298,33 @@ Entretanto, a análise mostrou que o usuário responsável pelo agente não cons
 
 /var/log/httpd
 
-A investigação revelou as permissões:
-
-drwx------ 2 root root /var/log/httpd
+A investigação revelou as permissões: drwx------ 2 root root /var/log/httpd
 
 Embora o arquivo access_log tivesse permissão de leitura, o diretório pai impedia o acesso necessário.
 
-🛠️ Correção aplicada
+## Correção aplicada
 
-Foi alterado o grupo do diretório:
+Foi alterado o grupo do diretório: sudo chgrp cwagent /var/log/httpd
 
-sudo chgrp cwagent /var/log/httpd
+Em seguida, foram ajustadas as permissões: sudo chmod 750 /var/log/httpd
 
-Em seguida, foram ajustadas as permissões:
-
-sudo chmod 750 /var/log/httpd
-
-O acesso foi então validado utilizando o usuário cwagent:
-
-sudo -u cwagent tail -n 3 /var/log/httpd/access_log
+O acesso foi então validado utilizando o usuário cwagent: sudo -u cwagent tail -n 3 /var/log/httpd/access_log
 
 Os registros passaram a ser acessíveis corretamente.
 
-🔄 Reinicialização do agente
+## Reinicialização do agente
 
-Após a correção:
+Após a correção: sudo systemctl restart amazon-cloudwatch-agent
 
-sudo systemctl restart amazon-cloudwatch-agent
+A execução foi novamente validada: sudo systemctl is-active amazon-cloudwatch-agent
 
-A execução foi novamente validada:
+Resultado: active
 
-sudo systemctl is-active amazon-cloudwatch-agent
-
-Resultado:
-
-active
-📊 Validação no CloudWatch
+## Validação no CloudWatch
 
 A confirmação final foi realizada diretamente no CloudWatch Logs.
 
-O grupo:
-
-HttpAccessLog
+O grupo: HttpAccessLog
 
 passou a apresentar uma Log Stream ativa, contendo registros reais do servidor Apache.
 
@@ -368,11 +348,12 @@ CloudWatch Logs
 Log Stream
    ↓
 Observabilidade
-📸 Evidência do troubleshooting
+
+## Evidência do troubleshooting
 
 <p align="center"> <img src="troubleshooting.png" alt="Troubleshooting do CloudWatch Agent" width="750"> </p>
 
-✅ Resultado
+## Resultado
 
 O problema foi identificado como uma restrição de acesso ao diretório de logs, corrigido por meio do ajuste de grupo e permissões e posteriormente validado no CloudWatch Logs.
 
@@ -380,36 +361,29 @@ Esse processo demonstrou um ciclo completo de troubleshooting:
 
 Problema → Investigação → Correção → Validação
 
-🌐 Análise dos eventos HTTP
+## Análise dos eventos HTTP
 
 A análise dos logs coletados permitiu observar diferentes padrões de acesso ao servidor Apache.
 
-✅ HTTP 200
-
+HTTP 200
 Indica uma requisição processada com sucesso.
 
-Exemplo:
+Exemplo: GET /icons/apache_pb2.gif HTTP/1.1" 200
 
-GET /icons/apache_pb2.gif HTTP/1.1" 200
-🚫 HTTP 403
-
+HTTP 403
 Indica que o acesso ao recurso foi proibido.
 
-Exemplo:
+Exemplo: GET / HTTP/1.1" 403
 
-GET / HTTP/1.1" 403
-🔎 HTTP 404
-
+HTTP 404
 Indica que o recurso solicitado não foi encontrado.
 
-Exemplo:
+Exemplo: GET /pagina-que-nao-existe HTTP/1.1" 404
 
-GET /pagina-que-nao-existe HTTP/1.1" 404
-⚠️ HTTP 400
-
+HTTP 400
 Indica uma requisição inválida enviada ao servidor.
 
-🛡️ Observação de segurança
+## Observação de segurança
 
 Durante a análise dos logs também foram identificadas requisições automatizadas procurando caminhos conhecidos de aplicações Web, incluindo tentativas relacionadas a:
 
@@ -425,47 +399,50 @@ A presença desses registros demonstra atividade de varredura automatizada na In
 
 Esse tipo de evidência reforça a importância de:
 
-📊 Monitoramento contínuo;
-📜 Análise de logs;
-🔐 Controles de acesso;
-🛡️ Security Groups;
-🔄 Atualização do servidor;
-🚨 Detecção de comportamentos suspeitos.
-📊 Resultados obtidos
+Monitoramento contínuo;
+Análise de logs;
+Controles de acesso;
+Security Groups;
+Atualização do servidor;
+Detecção de comportamentos suspeitos.
+Resultados obtidos
 Componente	Resultado
-🖥️ Amazon EC2 Web Server	✅ Monitorado
-🌐 Apache HTTPD	✅ Funcionando
-📜 Apache Access Log	✅ Coletado
-⚙️ CloudWatch Agent	✅ Ativo
-☁️ CloudWatch Logs	✅ Recebendo eventos
-📡 Log Stream	✅ Criada e recebendo registros
-🔎 Análise HTTP	✅ Realizada
-📣 Eventos EC2	✅ Monitorados
-🔔 Amazon SNS	✅ Utilizado para notificações
-🛡️ AWS Config	✅ Utilizado para conformidade
-🏷️ required-tags	✅ Configurada
-💾 ec2-volume-inuse-check	✅ Configurada
-🔧 Troubleshooting	✅ Realizado
-💡 Principais aprendizados
+
+Amazon EC2 Web Server	- Monitorado
+Apache HTTPD	- Funcionando
+Apache Access Log	- Coletado
+CloudWatch Agent	- Ativo
+CloudWatch Logs	- Recebendo eventos
+Log Stream	´- Criada e recebendo registros
+Análise HTTP	- Realizada
+Eventos EC2	- Monitorados
+Amazon SNS	- Utilizado para notificações
+AWS Config	- Utilizado para conformidade
+Required-tags	- Configurada
+Ec2-volume-inuse-check	- Configurada
+Troubleshooting	- Realizado
+
+## Principais aprendizados
 
 O laboratório permitiu desenvolver conhecimentos práticos em:
 
-☁️ Cloud Computing;
-🖥️ Amazon EC2;
-📊 Monitoramento com Amazon CloudWatch;
-📜 Gerenciamento e análise de logs;
-⚙️ Configuração do CloudWatch Agent;
-🔧 AWS Systems Manager;
-📡 Amazon EventBridge;
-🔔 Amazon SNS;
-🛡️ AWS Config;
-💾 Amazon EBS;
-🔐 IAM e análise de permissões;
-🔎 Troubleshooting;
-📈 Observabilidade;
-🛡️ Conformidade;
-🌐 Monitoramento de aplicações Web.
-🧠 O que este laboratório demonstra
+Cloud Computing;
+Amazon EC2;
+Monitoramento com Amazon CloudWatch;
+Gerenciamento e análise de logs;
+Configuração do CloudWatch Agent;
+AWS Systems Manager;
+Amazon EventBridge;
+Amazon SNS;
+AWS Config;
+Amazon EBS;
+IAM e análise de permissões;
+Troubleshooting;
+Observabilidade;
+Conformidade;
+Monitoramento de aplicações Web.
+
+## O que este laboratório demonstra
 
 Mais do que configurar serviços AWS, este laboratório demonstra uma competência essencial para profissionais de Cloud:
 
@@ -475,22 +452,24 @@ O troubleshooting do CloudWatch Agent foi especialmente relevante porque demonst
 
 A validação posterior no CloudWatch Logs comprovou que a correção foi efetiva.
 
-🏆 Competências demonstradas
+## Competências demonstradas
+
 Competência	Aplicação prática
-☁️ Cloud Computing	Utilização integrada de serviços AWS
-🖥️ Compute	Amazon EC2
-📊 Monitoring	Amazon CloudWatch
-📝 Log Management	CloudWatch Logs
-⚙️ Agent Configuration	CloudWatch Agent
-🔧 Cloud Operations	AWS Systems Manager
-🔔 Notifications	Amazon SNS
-📡 Event Management	EventBridge / CloudWatch Events
-🛡️ Compliance	AWS Config
-🔐 IAM	Análise de permissões
-🔎 Troubleshooting	Diagnóstico e correção de problemas
-🌐 Web Monitoring	Análise de logs Apache
-📈 Observability	Métricas, logs e eventos
-🏁 Conclusão
+
+Cloud Computing	Utilização integrada de serviços AWS
+Compute	Amazon EC2
+Monitoring	Amazon CloudWatch
+Log Management	CloudWatch Logs
+Agent Configuration	CloudWatch Agent
+Cloud Operations	AWS Systems Manager
+Notifications	Amazon SNS
+Event Management	EventBridge / CloudWatch Events
+Compliance	AWS Config
+IAM	Análise de permissões
+Troubleshooting	Diagnóstico e correção de problemas
+Web Monitoring	Análise de logs Apache
+Observability	Métricas, logs e eventos
+Conclusão
 
 O LAB 186 — Monitorar a Infraestrutura AWS proporcionou uma experiência prática de monitoramento e observabilidade de uma infraestrutura AWS.
 
@@ -502,13 +481,11 @@ Não basta identificar que algo está errado — é necessário investigar, corr
 
 Ao final da atividade, os logs do servidor Apache estavam sendo coletados pelo CloudWatch Agent e disponibilizados no CloudWatch Logs, os eventos de alteração da infraestrutura puderam ser monitorados e as regras do AWS Config foram utilizadas para avaliar a conformidade dos recursos.
 
-👩‍💻 Projeto desenvolvido por
+## Projeto desenvolvido por
 
 Eliana Diniz
 
-Estudos e práticas em:
-
-Cloud Computing | AWS | Infraestrutura | Observabilidade | Troubleshooting
+Estudos e práticas em: Cloud Computing | AWS | Infraestrutura | Observabilidade | Troubleshooting
 
 <p align="center">
 
