@@ -193,7 +193,7 @@ Aqui está a visualização tecnológica e realista do seu fluxo de notificaçã
 
 O design retrata o ambiente de nuvem:
 
-Começamos com a instância EC2 na parte superior.
+Começei com a instância EC2 na parte superior.
 Uma seta representando uma "Alteração de estado" (com ícone de pulso elétrico) leva ao hub central.
 O EventBridge é representado como um portal de eventos de malha, processando a mudança.
 Isso aciona uma "Regra de evento" lógica e programática.
