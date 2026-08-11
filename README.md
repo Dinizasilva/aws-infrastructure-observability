@@ -3,24 +3,13 @@ AWS infrastructure monitoring, log management, event-driven notifications, compl
 
 <p align="center">
 
-  <img src="https://img.shields.io/badge/Amazon%20EC2-orange?style=flat-square&logo=amazonaws&logoColor=white">
-
-  <img src="https://img.shields.io/badge/Amazon%20CloudWatch-blue?style=flat-square&logo=amazonaws&logoColor=white">
-
-  <img src="https://img.shields.io/badge/CloudWatch%20Logs-blue?style=flat-square&logo=amazonaws&logoColor=white">
-
-  <img src="https://img.shields.io/badge/AWS%20Systems%20Manager-blue?style=flat-square&logo=amazonaws&logoColor=white">
-
-  <img src="https://img.shields.io/badge/Amazon%20SNS-red?style=flat-square&logo=amazonaws&logoColor=white">
-
-  <img src="https://img.shields.io/badge/EventBridge-purple?style=flat-square&logo=amazonaws&logoColor=white">
-
-  <img src="https://img.shields.io/badge/AWS%20Config-purple?style=flat-square&logo=amazonaws&logoColor=white">
-
-  <img src="https://img.shields.io/badge/IAM-critical?style=flat-square&logo=amazonaws&logoColor=white">
-
-  <img src="https://img.shields.io/badge/Amazon%20EBS-orange?style=flat-square&logo=amazonaws&logoColor=white">
-
+ <p align="center">
+  <img src="https://img.shields.io/badge/AWS-Cloud-orange?style=for-the-badge&logo=amazonaws&logoColor=white">
+  <img src="https://img.shields.io/badge/Amazon%20EC2-Compute-orange?style=for-the-badge&logo=amazonaws&logoColor=white">
+  <img src="https://img.shields.io/badge/CloudWatch-Monitoring-blue?style=for-the-badge&logo=amazoncloudwatch&logoColor=white">
+  <img src="https://img.shields.io/badge/CloudWatch%20Logs-Observability-blue?style=for-the-badge&logo=amazonaws&logoColor=white">
+  <img src="https://img.shields.io/badge/AWS%20Config-Compliance-purple?style=for-the-badge&logo=amazonaws&logoColor=white">
+  <img src="https://img.shields.io/badge/Amazon%20SNS-Notifications-red?style=for-the-badge&logo=amazonaws&logoColor=white">
 </p>
 
 <p align="center">
