@@ -81,26 +81,6 @@ Amazon EBS	                 Volumes avaliados pelas regras de conformidade
 IAM	                        Controle de permissões e acesso aos recursos
 
 
-
-
-## Objetivos do laboratório
-
-Ao concluir o LAB 186 — Monitorar a Infraestrutura AWS, os principais objetivos alcançados foram:
-
-Monitorar uma instância Amazon EC2, acompanhando seu comportamento e estado operacional.
-Utilizar o Amazon CloudWatch para observabilidade e monitoramento da infraestrutura.
-Instalar e configurar o CloudWatch Agent para coleta de dados diretamente da instância.
-Coletar logs do servidor Apache e enviá-los para o CloudWatch Logs.
-Consultar e analisar eventos HTTP, identificando diferentes códigos de resposta e padrões de acesso.
-Configurar notificações com Amazon SNS para eventos relevantes da infraestrutura.
-Utilizar o Amazon EventBridge / CloudWatch Events para detectar alterações no estado dos recursos.
-Avaliar a conformidade dos recursos com AWS Config, utilizando regras gerenciadas.
-Verificar requisitos de tags nos recursos AWS.
-Avaliar a utilização de volumes Amazon EBS por meio de regras de conformidade.
-Analisar permissões IAM durante o processo de configuração e troubleshooting.
-Aplicar troubleshooting em ambiente AWS, investigando problemas, identificando causas, realizando correções e validando os resultados.
-Principal aprendizado
-
 O laboratório demonstrou que monitoramento não significa apenas visualizar métricas.
 
 Uma infraestrutura realmente observável exige a integração entre métricas, logs, eventos, notificações, gerenciamento e conformidade, permitindo identificar problemas e tomar ações baseadas em evidências.
