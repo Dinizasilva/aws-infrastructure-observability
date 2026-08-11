@@ -52,3 +52,61 @@ A arquitetura abaixo representa a integração dos principais serviços AWS util
        alt="Arquitetura da solução do LAB 186"
        width="650">
 </p>
+
+## Serviços AWS utilizados
+
+## Tech Stack & Lab Architecture
+
+> Modern, observable, and automated infrastructure blueprint built on AWS.
+
+| Capability / Service    | Role & Architecture Function |           Modern Implementation                                                            |
+| :---                    | :---                         | :---                                                                                       |
+| **Amazon EC2**          | Primary Monitored Target     | Ubuntu LTS Node running Apache HTTP Server (`t3.micro` / Auto-Recoverable)                 |
+| **Amazon CloudWatch**   | Observability & Telemetry    | Unified Metrics, Dashboards, and Composite Alarms for proactive health tracking            |
+| **CloudWatch Logs**     | Log Analytics & Retention    | Centralized stream indexing, JSON parsing, and real-time query insights                    |
+| **CloudWatch Agent**    | Edge Telemetry Collector     | Lightweight daemon streaming OS-level metrics and custom log groups                        |
+| **AWS Systems Manager** | Secure Fleet Operations      | Session Manager (Zero-SSH architecture), Patch Manager, and Run Command automation         |
+| **Amazon SNS**          | Event Distribution Backbone  | Encrypted Topics routing operational alerts to downstream consumers (Email/Slack/Webhooks) |
+| **Amazon EventBridge**  | Serverless Event Bus         | Real-time state-change filtering and automated routing rules                               |
+| **AWS Config**          | Compliance & Guardrails      | Continuous resource evaluation against security frameworks and best practices              |
+| **Amazon EBS**          | Block Storage & Evaluation   | Encrypted `gp3` volumes audited for compliance, backup status, and encryption-at-rest      |
+| **IAM**                 | Identity & Access Governance | Least-privilege IAM Roles, Instance Profiles, and granular service policies                |
+
+---
+
+## Quick Architecture Overview
+
+```mermaid
+graph TD
+    A[Amazon EC2] -->          |CloudWatch Agent         | B[CloudWatch Logs & Metrics]
+    A -->                      |Evaluated by             | C [AWS Config & EBS]
+    B -->                      |Triggers Alarms          | D[Amazon EventBridge]
+    D -->                      |Dispatches               | E[Amazon SNS]
+    F[AWS Systems Manager] -.->|Secure Ops / No SSH      | A
+    G[IAM] -.->                |Secures Access           | A & B & F
+
+## Objetivos do laboratório
+
+Ao concluir o LAB 186 — Monitorar a Infraestrutura AWS, os principais objetivos alcançados foram:
+
+Monitorar uma instância Amazon EC2, acompanhando seu comportamento e estado operacional.
+Utilizar o Amazon CloudWatch para observabilidade e monitoramento da infraestrutura.
+Instalar e configurar o CloudWatch Agent para coleta de dados diretamente da instância.
+Coletar logs do servidor Apache e enviá-los para o CloudWatch Logs.
+Consultar e analisar eventos HTTP, identificando diferentes códigos de resposta e padrões de acesso.
+Configurar notificações com Amazon SNS para eventos relevantes da infraestrutura.
+Utilizar o Amazon EventBridge / CloudWatch Events para detectar alterações no estado dos recursos.
+Avaliar a conformidade dos recursos com AWS Config, utilizando regras gerenciadas.
+Verificar requisitos de tags nos recursos AWS.
+Avaliar a utilização de volumes Amazon EBS por meio de regras de conformidade.
+Analisar permissões IAM durante o processo de configuração e troubleshooting.
+Aplicar troubleshooting em ambiente AWS, investigando problemas, identificando causas, realizando correções e validando os resultados.
+Principal aprendizado
+
+O laboratório demonstrou que monitoramento não significa apenas visualizar métricas.
+
+Uma infraestrutura realmente observável exige a integração entre métricas, logs, eventos, notificações, gerenciamento e conformidade, permitindo identificar problemas e tomar ações baseadas em evidências.
+
+Problema → Investigação → Correção → Validação
+
+Esse ciclo de troubleshooting foi um dos principais aprendizados práticos desenvolvidos durante o laboratório.
