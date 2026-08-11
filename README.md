@@ -182,22 +182,11 @@ A instância Web Server foi interrompida para gerar um evento de alteração de 
 
 O evento foi processado pela regra configurada e encaminhado ao Amazon SNS, permitindo validar o fluxo de notificação.
 
-EC2
- │
- ▼
-Alteração de estado
- │
- ▼
-EventBridge / CloudWatch Events
- │
- ▼
-Regra de evento
- │
- ▼
-Amazon SNS
- │
- ▼
-Notificação
+```html
+<div align="center">
+  <img src="assets/aws-event-notification-pipeline.png" width="500">
+</div>
+```
 
 
 Essa configuração demonstra como eventos operacionais podem ser utilizados para criar mecanismos de alerta em ambientes AWS.
