@@ -64,7 +64,7 @@ AWS Services
 
 </p>
 
-## Serviços AWS utilizados
+### Serviços AWS utilizados
 
 > Modern, observable, and automated infrastructure blueprint built on AWS.
 
@@ -275,7 +275,7 @@ O comportamento foi analisado como uma restrição de permissões do ambiente de
 
 Na avaliação de políticas IAM da AWS, uma negação explícita (Deny) prevalece sobre uma permissão (Allow). Portanto, mesmo que existisse uma permissão permitindo determinada ação, um Deny aplicável à solicitação resultaria em acesso negado.
 
-📸 Evidência
+## Evidência
 
 A captura abaixo registra a mensagem de negação de permissão observada durante a execução:
 
@@ -351,7 +351,7 @@ Observabilidade
 
 <p align="center"> <img src="troubleshooting.png" alt="Troubleshooting do CloudWatch Agent" width="750"> </p>
 
-## Resultado
+Resultado:
 
 O problema foi identificado como uma restrição de acesso ao diretório de logs, corrigido por meio do ajuste de grupo e permissões e posteriormente validado no CloudWatch Logs.
 
