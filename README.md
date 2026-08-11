@@ -1,4 +1,4 @@
-# aws-cloudwatch-infrastructure-monitoring
+## aws-infrastructure-observability
 AWS infrastructure monitoring, log management, event-driven notifications, compliance and troubleshooting with CloudWatch, EC2, SNS, EventBridge and AWS Config.
 
 <p align="center">
