@@ -26,9 +26,8 @@ AWS infrastructure monitoring, log management, event-driven notifications, compl
 </p>
 
 <p align="center">
-  <img src="assets/capa_lab.png"
+  <img src="./assets/capa_lab.png"
        alt="AWS Infrastructure Observability"
        width="100%">
 </p>
-
 
