@@ -130,7 +130,7 @@ Esse ciclo de troubleshooting foi um dos principais aprendizados práticos desen
 
 O laboratório foi desenvolvido em cinco etapas, integrando monitoramento, observabilidade, coleta de logs, notificações, gerenciamento e conformidade em um ambiente AWS.
 
-1 - Monitoramento da infraestrutura
+## 1 - Monitoramento da infraestrutura
 
 A primeira etapa teve como objetivo compreender o ambiente e identificar os recursos utilizados no monitoramento.
 
@@ -147,7 +147,8 @@ Configurações da infraestrutura.
 
 Essa etapa estabeleceu a base para as atividades de observabilidade realizadas nas etapas seguintes.
 
-2️ - Monitoramento e notificações
+
+## 2️ - Monitoramento e notificações
 
 Nesta etapa foi implementado um mecanismo para detectar alterações no estado da infraestrutura e gerar notificações.
 
@@ -167,7 +168,8 @@ O Amazon SNS foi utilizado como mecanismo de entrega das notificações.
 
 O objetivo foi demonstrar como eventos operacionais podem ser detectados e encaminhados automaticamente para os responsáveis pelo ambiente.
 
-3 - Coleta e monitoramento dos logs
+
+## 3 - Coleta e monitoramento dos logs
 
 Esta foi uma das principais etapas do laboratório.
 
@@ -214,7 +216,8 @@ Foram observados diferentes códigos de resposta, incluindo:
 404 — recurso não encontrado;
 400 — requisição inválida.
 
-4 -Notificações em tempo real
+
+## 4 -Notificações em tempo real
 
 A quarta etapa teve como objetivo validar o mecanismo de reação a alterações no estado da infraestrutura.
 
@@ -242,7 +245,8 @@ Notificação
 
 Essa configuração demonstra como eventos operacionais podem ser utilizados para criar mecanismos de alerta em ambientes AWS.
 
-5️ - Monitoramento da conformidade
+
+## 5️ - Monitoramento da conformidade
 
 Na última etapa foi utilizado o AWS Config para avaliar a conformidade dos recursos.
 
@@ -282,6 +286,7 @@ O comportamento foi analisado como uma restrição de permissões do ambiente de
 
 Na avaliação de políticas IAM da AWS, uma negação explícita (Deny) prevalece sobre uma permissão (Allow). Portanto, mesmo que existisse uma permissão permitindo determinada ação, um Deny aplicável à solicitação resultaria em acesso negado.
 
+
 ## Evidência
 
 A captura abaixo registra a mensagem de negação de permissão observada durante a execução:
@@ -307,6 +312,7 @@ A investigação revelou as permissões: drwx------ 2 root root /var/log/httpd
 
 Embora o arquivo access_log tivesse permissão de leitura, o diretório pai impedia o acesso necessário.
 
+
 ## Correção aplicada
 
 Foi alterado o grupo do diretório: sudo chgrp cwagent /var/log/httpd
@@ -324,6 +330,7 @@ Após a correção: sudo systemctl restart amazon-cloudwatch-agent
 A execução foi novamente validada: sudo systemctl is-active amazon-cloudwatch-agent
 
 Resultado: active
+
 
 ## Validação no CloudWatch
 
@@ -354,6 +361,7 @@ Log Stream
    ↓
 Observabilidade
 
+
 ## Evidência do troubleshooting
 
 <p align="center"> <img src="troubleshooting.png" alt="Troubleshooting do CloudWatch Agent" width="750"> </p>
@@ -365,6 +373,7 @@ O problema foi identificado como uma restrição de acesso ao diretório de logs
 Esse processo demonstrou um ciclo completo de troubleshooting:
 
 Problema → Investigação → Correção → Validação
+
 
 ## Análise dos eventos HTTP
 
@@ -387,6 +396,7 @@ Exemplo: GET /pagina-que-nao-existe HTTP/1.1" 404
 
 HTTP 400
 Indica uma requisição inválida enviada ao servidor.
+
 
 ## Observação de segurança
 
@@ -427,6 +437,7 @@ Required-tags	- Configurada
 Ec2-volume-inuse-check	- Configurada
 Troubleshooting	- Realizado
 
+
 ## Principais aprendizados
 
 O laboratório permitiu desenvolver conhecimentos práticos em:
@@ -447,6 +458,7 @@ Observabilidade;
 Conformidade;
 Monitoramento de aplicações Web.
 
+
 ## O que este laboratório demonstra
 
 Mais do que configurar serviços AWS, este laboratório demonstra uma competência essencial para profissionais de Cloud:
@@ -456,6 +468,7 @@ Investigar um problema, identificar sua causa, aplicar uma correção e comprova
 O troubleshooting do CloudWatch Agent foi especialmente relevante porque demonstrou que um serviço pode estar ativo e, ainda assim, não executar corretamente sua função devido a permissões de acesso aos arquivos.
 
 A validação posterior no CloudWatch Logs comprovou que a correção foi efetiva.
+
 
 ## Competências demonstradas
 
@@ -486,11 +499,22 @@ Não basta identificar que algo está errado — é necessário investigar, corr
 
 Ao final da atividade, os logs do servidor Apache estavam sendo coletados pelo CloudWatch Agent e disponibilizados no CloudWatch Logs, os eventos de alteração da infraestrutura puderam ser monitorados e as regras do AWS Config foram utilizadas para avaliar a conformidade dos recursos.
 
-## Projeto desenvolvido por
 
+## Projeto desenvolvido por
 Eliana Diniz
 
 Estudos e práticas em: Cloud Computing | AWS | Infraestrutura | Observabilidade | Troubleshooting
+
+LinkedIn: Eliana Diniz
+
+
+## Direção visual e imagens
+
+A identidade visual deste projeto, incluindo a concepção das imagens, composição dos elementos, definição da estética e elaboração dos prompts, foi idealizada por mim para representar visualmente a arquitetura e os conceitos técnicos desenvolvidos durante o laboratório.
+
+As imagens foram geradas e refinadas com auxílio do ChatGPT, a partir de prompts elaborados especificamente para este projeto.
+
+Tecnologia + criatividade + prática = aprendizado aplicado.
 
 <p align="center">
 
