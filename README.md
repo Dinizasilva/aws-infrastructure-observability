@@ -400,6 +400,7 @@ O laboratório permitiu desenvolver conhecimentos práticos em:
 - **Monitoramento de aplicações Web**
 
 
+
 ## O que este laboratório demonstra
 
 Mais do que configurar serviços AWS, este laboratório demonstra uma competência essencial para profissionais de Cloud:
@@ -413,22 +414,26 @@ A validação posterior no CloudWatch Logs comprovou que a correção foi efetiv
 
 ## Competências demonstradas
 
-Competência	Aplicação prática
 
-Cloud Computing	Utilização integrada de serviços AWS
-Compute	Amazon EC2
-Monitoring	Amazon CloudWatch
-Log Management	CloudWatch Logs
-Agent Configuration	CloudWatch Agent
-Cloud Operations	AWS Systems Manager
-Notifications	Amazon SNS
-Event Management	EventBridge / CloudWatch Events
-Compliance	AWS Config
-IAM	Análise de permissões
-Troubleshooting	Diagnóstico e correção de problemas
-Web Monitoring	Análise de logs Apache
-Observability	Métricas, logs e eventos
-Conclusão
+| Competência | Aplicação prática |
+|---|---|
+| **Cloud Computing** | Utilização integrada de serviços AWS |
+| **Compute** | Amazon EC2 |
+| **Monitoring** | Amazon CloudWatch |
+| **Log Management** | CloudWatch Logs |
+| **Agent Configuration** | CloudWatch Agent |
+| **Cloud Operations** | AWS Systems Manager |
+| **Notifications** | Amazon SNS |
+| **Event Management** | Amazon EventBridge |
+| **Compliance** | AWS Config |
+| **IAM** | Análise de permissões |
+| **Troubleshooting** | Diagnóstico e correção de problemas |
+| **Web Monitoring** | Análise de logs Apache |
+| **Observability** | Métricas, logs e eventos |
+
+
+
+## Conclusão
 
 O LAB 186 — Monitorar a Infraestrutura AWS proporcionou uma experiência prática de monitoramento e observabilidade de uma infraestrutura AWS.
 
