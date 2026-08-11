@@ -70,19 +70,18 @@ AWS Services
 
 ### Technologies & Components
 
-Component	                  Application in the Lab
-
-Amazon EC2	                 Web Server utilizado como recurso principal monitorado
-Apache HTTPD	               Servidor Web responsável pela geração dos logs
-CloudWatch Agent            Coleta dos logs do Apache diretamente da instância
-CloudWatch                  Logs	Armazenamento e análise dos eventos coletados
-Amazon EventBridge	         Detecção de eventos relacionados à infraestrutura
-Amazon SNS	                 Envio de notificações
-AWS Systems Manager	        Gerenciamento da instância e troubleshooting
-AWS Config	                 Avaliação da conformidade dos recursos
-Amazon EBS	                 Volumes avaliados pelas regras de conformidade
-IAM	                        Controle de permissões e acesso aos recursos
-
+| Component | Application in the Lab |
+|---|---|
+| Amazon EC2 | Web Server utilizado como recurso principal monitorado |
+| Apache HTTPD | Servidor Web responsável pela geração dos logs |
+| CloudWatch Agent | Coleta dos logs do Apache diretamente da instância |
+| CloudWatch Logs | Armazenamento e análise dos eventos coletados |
+| Amazon EventBridge | Detecção de eventos relacionados à infraestrutura |
+| Amazon SNS | Envio de notificações |
+| AWS Systems Manager | Gerenciamento da instância e troubleshooting |
+| AWS Config | Avaliação da conformidade dos recursos |
+| Amazon EBS | Volumes avaliados pelas regras de conformidade |
+| IAM | Controle de permissões e acesso aos recursos |
 
 O laboratório demonstrou que monitoramento não significa apenas visualizar métricas.
 
