@@ -42,3 +42,13 @@ IAM — gerenciamento de permissões
 ## Objetivo
 
 O laboratório teve como foco desenvolver uma visão prática de Cloud Operations e Observabilidade na AWS, demonstrando não apenas a configuração dos serviços, mas também a capacidade de investigar problemas, identificar causas, aplicar correções e validar tecnicamente os resultados.
+
+## Arquitetura da Solução
+
+A arquitetura abaixo representa a integração dos principais serviços AWS utilizados no laboratório, desde o monitoramento da instância EC2 e coleta dos logs do Apache até o processamento de eventos, notificações e avaliação de conformidade.
+
+<p align="center">
+  <img src="arquitetura_solucao.png"
+       alt="Arquitetura da solução do LAB 186"
+       width="650">
+</p>
