@@ -17,3 +17,28 @@ AWS infrastructure monitoring, log management, event-driven notifications, compl
        alt="AWS Infrastructure Observability"
        width="650">
 </p>
+
+## Sobre o laboratório
+
+O LAB 186 — Monitorar a Infraestrutura AWS apresenta, na prática, como utilizar serviços da AWS para monitorar recursos computacionais, coletar e analisar logs, identificar eventos operacionais, gerar notificações e avaliar a conformidade da infraestrutura.
+
+Durante o laboratório, uma instância Amazon EC2 Web Server foi utilizada como recurso principal para demonstrar um cenário integrado de monitoramento e observabilidade.
+
+A atividade envolveu a integração de diferentes serviços da AWS, permitindo acompanhar o ambiente desde a geração dos eventos no servidor até sua coleta, análise, notificação e avaliação de conformidade.
+
+## Principais componentes
+
+Amazon EC2 — recurso computacional monitorado
+Amazon CloudWatch — monitoramento e observabilidade
+CloudWatch Logs — coleta, armazenamento e análise de logs
+CloudWatch Agent — coleta de logs diretamente da instância
+AWS Systems Manager — gerenciamento e troubleshooting da instância
+Amazon SNS — envio de notificações
+Amazon EventBridge / CloudWatch Events — detecção de eventos operacionais
+AWS Config — avaliação de conformidade
+Amazon EBS — volumes avaliados pelas regras de conformidade
+IAM — gerenciamento de permissões
+
+## Objetivo
+
+O laboratório teve como foco desenvolver uma visão prática de Cloud Operations e Observabilidade na AWS, demonstrando não apenas a configuração dos serviços, mas também a capacidade de investigar problemas, identificar causas, aplicar correções e validar tecnicamente os resultados.
