@@ -435,15 +435,31 @@ A validação posterior no CloudWatch Logs comprovou que a correção foi efetiv
 
 ## Conclusão
 
-O LAB 186 — Monitorar a Infraestrutura AWS proporcionou uma experiência prática de monitoramento e observabilidade de uma infraestrutura AWS.
+O **LAB 186 — Monitorar a Infraestrutura AWS** proporcionou uma experiência prática de monitoramento, observabilidade e operação de uma infraestrutura AWS.
 
-Por meio da integração entre Amazon EC2, CloudWatch, CloudWatch Logs, CloudWatch Agent, Systems Manager, EventBridge, Amazon SNS, AWS Config e Amazon EBS, foi possível construir um fluxo completo de acompanhamento da infraestrutura.
+A integração entre **Amazon EC2, Amazon CloudWatch, CloudWatch Logs, CloudWatch Agent, AWS Systems Manager, Amazon EventBridge, Amazon SNS, AWS Config, Amazon EBS e IAM** permitiu construir um fluxo completo de monitoramento, gerenciamento de logs, eventos, notificações e conformidade.
 
-O laboratório também reforçou uma competência essencial para a atuação em Cloud:
+O laboratório também reforçou uma competência essencial para profissionais de Cloud:
 
-Não basta identificar que algo está errado — é necessário investigar, corrigir e comprovar o resultado.
+> **Não basta identificar que algo está errado — é necessário investigar, corrigir e comprovar tecnicamente o resultado.**
 
-Ao final da atividade, os logs do servidor Apache estavam sendo coletados pelo CloudWatch Agent e disponibilizados no CloudWatch Logs, os eventos de alteração da infraestrutura puderam ser monitorados e as regras do AWS Config foram utilizadas para avaliar a conformidade dos recursos.
+Durante o troubleshooting do **CloudWatch Agent**, foi possível identificar um problema de permissões de acesso aos arquivos de log do Apache, aplicar a correção e validar posteriormente a coleta dos logs no **Amazon CloudWatch Logs**.
+
+### AWS Services & Technologies
+
+![AWS](https://img.shields.io/badge/AWS-Cloud-orange?logo=amazonaws&logoColor=white)
+![EC2](https://img.shields.io/badge/Amazon%20EC2-Compute-orange?logo=amazonec2&logoColor=white)
+![CloudWatch](https://img.shields.io/badge/Amazon%20CloudWatch-Monitoring-orange?logo=amazoncloudwatch&logoColor=white)
+![CloudWatch Logs](https://img.shields.io/badge/CloudWatch%20Logs-Logging-blue?logo=amazoncloudwatch&logoColor=white)
+![Systems Manager](https://img.shields.io/badge/AWS%20Systems%20Manager-Operations-orange?logo=amazonaws&logoColor=white)
+![EventBridge](https://img.shields.io/badge/Amazon%20EventBridge-Events-orange?logo=amazonaws&logoColor=white)
+![SNS](https://img.shields.io/badge/Amazon%20SNS-Notifications-orange?logo=amazonaws&logoColor=white)
+![Config](https://img.shields.io/badge/AWS%20Config-Compliance-blue?logo=amazonaws&logoColor=white)
+![EBS](https://img.shields.io/badge/Amazon%20EBS-Storage-orange?logo=amazonebs&logoColor=white)
+![IAM](https://img.shields.io/badge/AWS%20IAM-Security-red?logo=amazoniam&logoColor=white)
+
+
+**Resultado:** uma experiência prática envolvendo **Cloud Operations, Observability, Monitoring, Log Management, Troubleshooting e Compliance** em ambiente AWS.
 
 
 ## Projeto desenvolvido por
