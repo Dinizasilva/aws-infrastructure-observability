@@ -53,9 +53,18 @@ A arquitetura abaixo representa a integração dos principais serviços AWS util
        width="650">
 </p>
 
-## Serviços AWS utilizados
 
-## Tech Stack & Lab Architecture
+## Tech Stack & Lab Architecture 
+
+AWS Services
+
+<p align="center">
+
+<img src="https://img.shields.io/badge/Amazon%20EC2-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/Amazon%20CloudWatch-FF4F8B?style=for-the-badge&logo=amazoncloudwatch&logoColor=white"> <img src="https://img.shields.io/badge/CloudWatch%20Logs-FF4F8B?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/CloudWatch%20Agent-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/AWS%20Systems%20Manager-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/Amazon%20SNS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/Amazon%20EventBridge-FF4F8B?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/AWS%20Config-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/Amazon%20EBS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/IAM-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
+
+</p>
+
+## Serviços AWS utilizados
 
 > Modern, observable, and automated infrastructure blueprint built on AWS.
 
@@ -73,17 +82,6 @@ A arquitetura abaixo representa a integração dos principais serviços AWS util
 | **IAM**                 | Identity & Access Governance | Least-privilege IAM Roles, Instance Profiles, and granular service policies                |
 
 ---
-
-## Quick Architecture Overview
-
-```mermaid
-graph TD
-    A[Amazon EC2] -->          |CloudWatch Agent         | B[CloudWatch Logs & Metrics]
-    A -->                      |Evaluated by             | C [AWS Config & EBS]
-    B -->                      |Triggers Alarms          | D[Amazon EventBridge]
-    D -->                      |Dispatches               | E[Amazon SNS]
-    F[AWS Systems Manager] -.->|Secure Ops / No SSH      | A
-    G[IAM] -.->                |Secures Access           | A & B & F
 
 ## Objetivos do laboratório
 
