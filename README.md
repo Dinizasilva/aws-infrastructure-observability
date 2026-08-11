@@ -158,7 +158,6 @@ Nesta etapa foi implementado um mecanismo para detectar alterações no estado d
 </p>
 
 
-
 A regra foi configurada para identificar alterações nos estados:
 
 stopped
