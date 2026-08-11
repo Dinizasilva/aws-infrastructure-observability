@@ -157,7 +157,9 @@ CloudWatch Logs
 Uma Log Stream associada à instância EC2 foi utilizada para receber os eventos.
 
 
-O fluxo implementado foi:
+## Os elementos visuais que remetem à nuvem AWS
+
+O logo da AWS, caixas de servidor, o painel de controle do CloudWatch e a estrutura de logs em tempo real, para tornar a visualização técnica bem clara e com aspecto profissional.
 
 <div align="center"> <img src ="apache-cloudwatch-logs-pipeline.png" width="500"> </div>
 
