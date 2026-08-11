@@ -30,16 +30,17 @@ A atividade envolveu a integração de diferentes serviços da AWS, permitindo a
 
 ## Principais componentes
 
-Amazon EC2 — recurso computacional monitorado
-Amazon CloudWatch — monitoramento e observabilidade
-CloudWatch Logs — coleta, armazenamento e análise de logs
-CloudWatch Agent — coleta de logs diretamente da instância
-AWS Systems Manager — gerenciamento e troubleshooting da instância
-Amazon SNS — envio de notificações
-Amazon EventBridge / CloudWatch Events — detecção de eventos operacionais
-AWS Config — avaliação de conformidade
-Amazon EBS — volumes avaliados pelas regras de conformidade
-IAM — gerenciamento de permissões
+- **Amazon EC2** — recurso computacional monitorado
+- **Amazon CloudWatch** — monitoramento e observabilidade
+- **CloudWatch Logs** — coleta, armazenamento e análise de logs
+- **CloudWatch Agent** — coleta de logs diretamente da instância
+- **AWS Systems Manager** — gerenciamento e troubleshooting da instância
+- **Amazon SNS** — envio de notificações
+- **Amazon EventBridge** — detecção de eventos operacionais
+- **AWS Config** — avaliação de conformidade
+- **Amazon EBS** — volumes avaliados pelas regras de conformidade
+- **IAM** — gerenciamento de permissões
+  
 
 ## Objetivo
 
