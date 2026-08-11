@@ -189,6 +189,16 @@ O evento foi processado pela regra configurada e encaminhado ao Amazon SNS, perm
 </div>
 
 
+Aqui está a visualização tecnológica e realista do seu fluxo de notificação de eventos da AWS, seguindo o mesmo estilo da imagem anterior.
+
+O design retrata o ambiente de nuvem:
+
+Começamos com a instância EC2 na parte superior.
+Uma seta representando uma "Alteração de estado" (com ícone de pulso elétrico) leva ao hub central.
+O EventBridge é representado como um portal de eventos de malha, processando a mudança.
+Isso aciona uma "Regra de evento" lógica e programática.
+A regra encaminha para o serviço Amazon SNS, mostrado como um sistema de tópicos e assinaturas.
+Finalmente, um ícone de smartphone e e-mail na parte inferior recebe a "Notificação" final, completando o ciclo.
 Essa configuração demonstra como eventos operacionais podem ser utilizados para criar mecanismos de alerta em ambientes AWS.
 
 
