@@ -154,7 +154,7 @@ Nesta etapa foi implementado um mecanismo para detectar alterações no estado d
 <p align="center">
   <img src="eventbridge_sns_flow.png"
        alt="Fluxo de eventos entre Amazon EC2, EventBridge, Amazon SNS e e-mail"
-       width="650">
+       width="450">
 </p>
 
 
