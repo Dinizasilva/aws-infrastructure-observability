@@ -50,7 +50,7 @@ A arquitetura abaixo representa a integração dos principais serviços AWS util
 <p align="center">
   <img src="arquitetura_solucao.png"
        alt="Arquitetura da solução do LAB 186"
-       width="650">
+       width="500">
 </p>
 
 
