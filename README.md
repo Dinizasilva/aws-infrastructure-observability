@@ -162,6 +162,7 @@ O fluxo implementado foi:
 <div align="center"> <img src ="apache-cloudwatch-logs-pipeline.png" width="500"> </div>
 
 
+
 A validação confirmou a chegada de eventos HTTP reais ao CloudWatch Logs.
 
 Foram observados diferentes códigos de resposta, incluindo:
