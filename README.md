@@ -467,7 +467,7 @@ Eliana Diniz
 
 Estudos e práticas em: Cloud Computing | AWS | Infraestrutura | Observabilidade | Troubleshooting
 
-LinkedIn: www.linkedin.com/in/eliana-diniz
+LinkedIn: https://www.linkedin.com/in/eliana-diniz
 
 
 ## Direção visual e imagens
