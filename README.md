@@ -58,7 +58,7 @@ Instalei o agente na instância. Verifiquei o status:
 
 sudo systemctl is-active amazon-cloudwatch-agent
 
-# active
+## active
 
 "Active". Maravilha. Fui no console AWS abrir o CloudWatch Logs... nada. Nenhuma Log Stream. Nenhum evento no grupo HttpAccessLog.
 O agente tava rodando, mas não enviava porra nenhuma.
@@ -67,32 +67,32 @@ O agente precisa ler /var/log/httpd/access_log. Fui verificar as permissões:
 
 ls -la /var/log/httpd/
 
-# drwx------ 2 root root ... /var/log/httpd
-# -rw-r--r-- 1 root root ... access_log
+## drwx------ 2 root root ... /var/log/httpd
+## -rw-r--r-- 1 root root ... access_log
 
 O arquivo access_log tinha permissão de leitura. Mas o diretório pai (/var/log/httpd) tava com drwx------ e grupo root. O agente roda como usuário cwagent — ele nem conseguia entrar no diretório.
 
-# A correção
+## A correção
 
-# Mudei o grupo do diretório pro usuário do agente
+## Mudei o grupo do diretório pro usuário do agente
 sudo chgrp cwagent /var/log/httpd
 
-# Ajustei permissões para o grupo poder ler/entrar
+## Ajustei permissões para o grupo poder ler/entrar
 sudo chmod 750 /var/log/httpd
 
-# Testei se o agente consegue ler agora
+## Testei se o agente consegue ler agora
 sudo -u cwagent tail -n 3 /var/log/httpd/access_log
 
-# Reiniciei o agente
+## Reiniciei o agente
 sudo systemctl restart amazon-cloudwatch-agent
 sudo systemctl is-active amazon-cloudwatch-agent
 
-# active
+## active
 
 Fui no console. Os logs começaram a chegar.
 O que eu aprendi: active não significa funcionando. Sempre valida a saída, não só o status do serviço.
 
-# Evidências do pipeline funcionando
+## Evidências do pipeline funcionando
 
 | O que tá acontecendo                        | Print                                      |
 | ------------------------------------------- | ------------------------------------------ |
