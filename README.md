@@ -117,7 +117,7 @@ O que eu aprendi: active não significa funcionando. Sempre valida a saída, nã
 
 
 
-<div align="center"> <img src ="apache-cloudwatch-logs-pipeline.png" width="500"> </div>
+<img src ="apache-cloudwatch-logs-pipeline.png" width="500"> </div>
 
 
 
