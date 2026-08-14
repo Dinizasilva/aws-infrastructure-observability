@@ -132,15 +132,18 @@ Isso me fez perceber: monitoramento não é só ver se tá no ar. É saber quem 
 
 
 
-## Etapa 5: Conformidade com AWS Config
+### Etapa 5: Conformidade com AWS Config
 
 Ativei o AWS Config pra rodar duas regras gerenciadas:
+
 required-tags — os recursos têm as tags obrigatórias?
 ec2-volume-inuse-check — os volumes EBS estão realmente anexados a alguma instância?
+
 Funcionou, mas com uma ressalva: o ambiente do lab tinha restrições de IAM. Quando tentei ver os Configuration Recorders, tomei um access denied:
 
 config:DescribeConfigurationRecorders — not authorized
 s3:ListAllMyBuckets — explicit deny
+
 
 ## Tech Stack
 
