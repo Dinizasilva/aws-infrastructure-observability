@@ -84,7 +84,7 @@ sudo chmod 750 /var/log/httpd
 ### Testei se o agente consegue ler agora
 sudo -u cwagent tail -n 3 /var/log/httpd/access_log
 
-## Reiniciei o agente
+### Reiniciei o agente
 sudo systemctl restart amazon-cloudwatch-agent
 sudo systemctl is-active amazon-cloudwatch-agent
 
