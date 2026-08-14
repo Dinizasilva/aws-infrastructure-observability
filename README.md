@@ -149,16 +149,18 @@ GET /wp-ws68.php HTTP/1.1" 404
 GET /img.php HTTP/1.1" 404
 
 
-
 Bots. Varredura automatizada. Minha instância tava na internet há menos de 30 minutos e já tinham achado ela.
 Isso me fez perceber: monitoramento não é só ver se tá no ar. É saber quem tá batendo na porta, com que frequência, e se sua configuração aguenta o tranco.
+
+
 
 
 <p align="center">
   <img src="eventbridge_sns_flow.png"
        alt="Fluxo de eventos entre Amazon EC2, EventBridge, Amazon SNS e e-mail"
-       width="450">
+       width="550">
 </p>
+
 
 
 
@@ -183,6 +185,7 @@ AWS Services
 
 <img src="https://img.shields.io/badge/Amazon%20EC2-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/Amazon%20CloudWatch-FF4F8B?style=for-the-badge&logo=amazoncloudwatch&logoColor=white"> <img src="https://img.shields.io/badge/CloudWatch%20Logs-FF4F8B?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/CloudWatch%20Agent-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/AWS%20Systems%20Manager-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/Amazon%20SNS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/Amazon%20EventBridge-FF4F8B?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/AWS%20Config-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/Amazon%20EBS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/IAM-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
 
+
 </p>
 
 
@@ -191,6 +194,7 @@ AWS Services
        alt="Arquitetura da solução do LAB 186"
        width="700">
 </p>
+
 
 
 
