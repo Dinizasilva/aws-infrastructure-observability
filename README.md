@@ -1,8 +1,8 @@
 <div align="center">
  
 ## AWS Infrastructure Observability
-Subi uma EC2 pra monitorar com CloudWatch. O agente disse que tava ativo. Mentiu.
-Esse repo é o que aconteceu depois.
+**Subi uma EC2 pra monitorar com CloudWatch. O agente disse que tava ativo. Mentiu.
+Esse repo é o que aconteceu depois.**
 
 </div>
 <p align="center">
