@@ -53,7 +53,7 @@ O laboratório teve como foco desenvolver uma visão prática de Cloud Operation
 <p align="center">
   <img src="arquitetura_solucao.png"
        alt="Arquitetura da solução do LAB 186"
-       width="500">
+       width="700">
 </p>
 
 
