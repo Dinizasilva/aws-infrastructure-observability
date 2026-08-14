@@ -568,4 +568,4 @@ Tecnologia + criatividade + prática = aprendizado aplicado.
 From Infrastructure to Observability.
 
 AWS Cloud Practitioner Journey
-</p>
+</p>  
