@@ -103,13 +103,14 @@ O que eu aprendi: active não significa funcionando. Sempre valida a saída, nã
 | Log Stream ativa recebendo registros reais  | `images/cloudwatch-log-stream.png`         |
 
 ### Etapa 4: O que os logs revelaram
+
 Depois que funcionou, fiquei olhando os logs no CloudWatch. Códigos HTTP normais:
 
 GET /icons/apache_pb2.gif HTTP/1.1" 200
 GET / HTTP/1.1" 403
 GET /pagina-que-nao-existe HTTP/1.1" 404
 
-Mas também vi isso:
+## Mas também vi isso:
 
 GET /wp-content/plugins/... HTTP/1.1" 404
 GET /admin.php HTTP/1.1" 404
