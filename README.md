@@ -44,13 +44,23 @@ Pensei: "Beleza, parte fácil. Agora vem o CloudWatch."
 
 ## Etapa 2: Monitoramento e alertas
 
-Configurei o EventBridge pra detectar mudanças de estado da instância:
+A regra foi configurar para identificar alterações nos estados:
+Configurei o EventBridge pra detectar mudanças de estado da instância
+
 stopped
 terminated
+
+O Amazon SNS foi utilizado como mecanismo de entrega das notificações.
+
 Quando isso acontece, dispara uma notificação via SNS pro meu e-mail.
+
 Teste: Parei a instância manualmente.
+
 Resultado: E-mail chegou em segundos. Funcionou de primeira.
 Aí eu me senti confiante demais.
+
+O objetivo foi demonstrar como eventos operacionais podem ser detectados e encaminhados automaticamente para os responsáveis pelo ambiente.
+
 
 ## Etapa 3: O inferno do CloudWatch Agent
 
@@ -61,7 +71,8 @@ sudo systemctl is-active amazon-cloudwatch-agent
 ### active
 
 "Active". Maravilha. Fui no console AWS abrir o CloudWatch Logs... nada. Nenhuma Log Stream. Nenhum evento no grupo HttpAccessLog.
-O agente tava rodando, mas não enviava porra nenhuma.
+O agente tava rodando, mas não enviava nada.
+
 Investigação
 O agente precisa ler /var/log/httpd/access_log. Fui verificar as permissões:
 
@@ -72,6 +83,8 @@ ls -la /var/log/httpd/
 
 O arquivo access_log tinha permissão de leitura. Mas o diretório pai (/var/log/httpd) tava com drwx------ e grupo root. O agente roda como usuário cwagent — ele nem conseguia entrar no diretório.
 
+Esta foi uma das principais etapas do laboratório.
+O servidor Apache disponibiliza seus registros de acesso no arquivo:
 
 ### A correção
 
@@ -101,6 +114,20 @@ O que eu aprendi: active não significa funcionando. Sempre valida a saída, nã
 | Fluxo: Apache → Agent → CloudWatch Logs     | `images/apache-to-cloudwatch-pipeline.png` |
 | Notificação SNS quando a instância parou    | `images/eventbridge-sns-notification.png`  |
 | Log Stream ativa recebendo registros reais  | `images/cloudwatch-log-stream.png`         |
+
+
+<div align="center"> <img src ="apache-cloudwatch-logs-pipeline.png" width="500"> </div>
+
+
+A validação confirmou a chegada de eventos HTTP reais ao CloudWatch Logs.
+
+Foram observados diferentes códigos de resposta, incluindo:
+
+200 — requisição processada com sucesso;
+403 — acesso proibido;
+404 — recurso não encontrado;
+400 — requisição inválida.
+
 
 ### Etapa 4: O que os logs revelaram
 
@@ -155,22 +182,13 @@ AWS Services
 
 </p>
 
-EC2 — Amazon Linux + Apache HTTPD
-CloudWatch / CloudWatch Logs — métricas e centralização de logs
-CloudWatch Agent — coleta local (e dor de cabeça)
-EventBridge — detecção de eventos de infraestrutura
-SNS — notificações por e-mail
-AWS Config — compliance contínuo
-Systems Manager — acesso e troubleshooting
-IAM — controle (e negação) de permissões
-EBS — volumes avaliados pelo Config
-
 
 <p align="center">
   <img src="arquitetura_solucao.png"
        alt="Arquitetura da solução do LAB 186"
        width="700">
 </p>
+
 
 
 ### Technologies & Components
@@ -218,50 +236,9 @@ Se você é recrutador, mentor ou alguém também quebrando a cabeça com CloudW
 📧 E-mail: eliana.dinizsilva@gmail.com
 
 
-## 2️ - Monitoramento e notificações
 
 
 
-A regra foi configurada para identificar alterações nos estados:
-
-stopped
-terminated
-
-O Amazon SNS foi utilizado como mecanismo de entrega das notificações.
-
-O objetivo foi demonstrar como eventos operacionais podem ser detectados e encaminhados automaticamente para os responsáveis pelo ambiente.
-
-
-
-## 3 - Coleta e monitoramento dos logs
-
-Esta foi uma das principais etapas do laboratório.
-
-O servidor Apache disponibiliza seus registros de acesso no arquivo:
-
-/var/log/httpd/access_log
-
-O Amazon CloudWatch Agent foi configurado para coletar esse arquivo e encaminhar os registros para o:
-
-CloudWatch Logs
-      │
-      └── HttpAccessLog
-
-
-Uma Log Stream associada à instância EC2 foi utilizada para receber os eventos.
-
-
-<div align="center"> <img src ="apache-cloudwatch-logs-pipeline.png" width="500"> </div>
-
-
-A validação confirmou a chegada de eventos HTTP reais ao CloudWatch Logs.
-
-Foram observados diferentes códigos de resposta, incluindo:
-
-200 — requisição processada com sucesso;
-403 — acesso proibido;
-404 — recurso não encontrado;
-400 — requisição inválida.
 
 
 
