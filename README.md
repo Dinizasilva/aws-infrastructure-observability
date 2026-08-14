@@ -29,6 +29,9 @@ Lab prático feito durante o AWS re/Start. O objetivo era montar um pipeline de 
 Na teoria, é só ligar uns serviços. Na prática, eu passei 40 minutos descobrindo por que o CloudWatch Agent não enviava nada sendo que o status tava "active".
 Spoiler: era permissão de diretório. Coisa boba. Coisa que só descobre na marra.
 
+## Tarefas Executadas
+
+O laboratório foi desenvolvido em cinco etapas, integrando monitoramento, observabilidade, coleta de logs, notificações, gerenciamento e conformidade em um ambiente AWS.
 
 ## Etapa 1: A instância e o Apache
 
@@ -115,6 +118,14 @@ GET /img.php HTTP/1.1" 404
 Bots. Varredura automatizada. Minha instância tava na internet há menos de 30 minutos e já tinham achado ela.
 Isso me fez perceber: monitoramento não é só ver se tá no ar. É saber quem tá batendo na porta, com que frequência, e se sua configuração aguenta o tranco.
 
+<p align="center">
+  <img src="eventbridge_sns_flow.png"
+       alt="Fluxo de eventos entre Amazon EC2, EventBridge, Amazon SNS e e-mail"
+       width="450">
+</p>
+
+
+
 ## Etapa 5: Conformidade com AWS Config
 
 Ativei o AWS Config pra rodar duas regras gerenciadas:
@@ -175,11 +186,6 @@ Uma infraestrutura realmente observável exige a integração entre métricas, l
 Problema → Investigação → Correção → Validação
 
 Esse ciclo de troubleshooting foi um dos principais aprendizados práticos desenvolvidos durante o laboratório.
-
-
-## Tarefas Executadas
-
-O laboratório foi desenvolvido em cinco etapas, integrando monitoramento, observabilidade, coleta de logs, notificações, gerenciamento e conformidade em um ambiente AWS.
 
 
 ## O que esse lab realmente me ensinou
