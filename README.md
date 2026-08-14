@@ -116,7 +116,9 @@ O que eu aprendi: active não significa funcionando. Sempre valida a saída, nã
 | Log Stream ativa recebendo registros reais  | `images/cloudwatch-log-stream.png`         |
 
 
+
 <div align="center"> <img src ="apache-cloudwatch-logs-pipeline.png" width="500"> </div>
+
 
 
 A validação confirmou a chegada de eventos HTTP reais ao CloudWatch Logs.
@@ -150,6 +152,7 @@ GET /img.php HTTP/1.1" 404
 
 Bots. Varredura automatizada. Minha instância tava na internet há menos de 30 minutos e já tinham achado ela.
 Isso me fez perceber: monitoramento não é só ver se tá no ar. É saber quem tá batendo na porta, com que frequência, e se sua configuração aguenta o tranco.
+
 
 <p align="center">
   <img src="eventbridge_sns_flow.png"
