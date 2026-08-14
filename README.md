@@ -30,35 +30,102 @@ Na teoria, é só ligar uns serviços. Na prática, eu passei 40 minutos descobr
 Spoiler: era permissão de diretório. Coisa boba. Coisa que só descobre na marra.
 
 
-## Principais componentes
+## Etapa 1: A instância e o Apache
 
-- **Amazon EC2** — recurso computacional monitorado
-- **Amazon CloudWatch** — monitoramento e observabilidade
-- **CloudWatch Logs** — coleta, armazenamento e análise de logs
-- **CloudWatch Agent** — coleta de logs diretamente da instância
-- **AWS Systems Manager** — gerenciamento e troubleshooting da instância
-- **Amazon SNS** — envio de notificações
-- **Amazon EventBridge** — detecção de eventos operacionais
-- **AWS Config** — avaliação de conformidade
-- **Amazon EBS** — volumes avaliados pelas regras de conformidade
-- **IAM** — gerenciamento de permissões
-  
+Subi uma EC2 na us-east-1 com Amazon Linux e Apache HTTPD rodando. Servidor web básico, gerando logs em /var/log/httpd/access_log.
+O que eu verifiquei de cara:
+Instância no ar ✅
+Apache respondendo requests ✅
+Logs sendo gerados ✅
+Pensei: "Beleza, parte fácil. Agora vem o CloudWatch."
 
-## Objetivo
+## Etapa 2: Monitoramento e alertas
 
-O laboratório teve como foco desenvolver uma visão prática de Cloud Operations e Observabilidade na AWS, demonstrando não apenas a configuração dos serviços, mas também a capacidade de investigar problemas, identificar causas, aplicar correções e validar tecnicamente os resultados.
+Configurei o EventBridge pra detectar mudanças de estado da instância:
+stopped
+terminated
+Quando isso acontece, dispara uma notificação via SNS pro meu e-mail.
+Teste: Parei a instância manualmente.
+Resultado: E-mail chegou em segundos. Funcionou de primeira.
+Aí eu me senti confiante demais.
 
-## A arquitetura
+## Etapa 3: O inferno do CloudWatch Agent
 
-<p align="center">
-  <img src="arquitetura_solucao.png"
-       alt="Arquitetura da solução do LAB 186"
-       width="700">
-</p>
+Instalei o agente na instância. Verifiquei o status:
 
+sudo systemctl is-active amazon-cloudwatch-agent
 
+# active
 
-## Tech Stack & Lab Architecture 
+"Active". Maravilha. Fui no console AWS abrir o CloudWatch Logs... nada. Nenhuma Log Stream. Nenhum evento no grupo HttpAccessLog.
+O agente tava rodando, mas não enviava porra nenhuma.
+Investigação
+O agente precisa ler /var/log/httpd/access_log. Fui verificar as permissões:
+
+ls -la /var/log/httpd/
+
+# drwx------ 2 root root ... /var/log/httpd
+# -rw-r--r-- 1 root root ... access_log
+
+O arquivo access_log tinha permissão de leitura. Mas o diretório pai (/var/log/httpd) tava com drwx------ e grupo root. O agente roda como usuário cwagent — ele nem conseguia entrar no diretório.
+
+# A correção
+
+# Mudei o grupo do diretório pro usuário do agente
+sudo chgrp cwagent /var/log/httpd
+
+# Ajustei permissões para o grupo poder ler/entrar
+sudo chmod 750 /var/log/httpd
+
+# Testei se o agente consegue ler agora
+sudo -u cwagent tail -n 3 /var/log/httpd/access_log
+
+# Reiniciei o agente
+sudo systemctl restart amazon-cloudwatch-agent
+sudo systemctl is-active amazon-cloudwatch-agent
+
+# active
+
+Fui no console. Os logs começaram a chegar.
+O que eu aprendi: active não significa funcionando. Sempre valida a saída, não só o status do serviço.
+
+# Evidências do pipeline funcionando
+
+| O que tá acontecendo                        | Print                                      |
+| ------------------------------------------- | ------------------------------------------ |
+| Dashboard do CloudWatch com métricas da EC2 | `images/cloudwatch-dashboard.png`          |
+| Fluxo: Apache → Agent → CloudWatch Logs     | `images/apache-to-cloudwatch-pipeline.png` |
+| Notificação SNS quando a instância parou    | `images/eventbridge-sns-notification.png`  |
+| Log Stream ativa recebendo registros reais  | `images/cloudwatch-log-stream.png`         |
+
+## Etapa 4: O que os logs revelaram
+Depois que funcionou, fiquei olhando os logs no CloudWatch. Códigos HTTP normais:
+
+GET /icons/apache_pb2.gif HTTP/1.1" 200
+GET / HTTP/1.1" 403
+GET /pagina-que-nao-existe HTTP/1.1" 404
+
+Mas também vi isso:
+
+GET /wp-content/plugins/... HTTP/1.1" 404
+GET /admin.php HTTP/1.1" 404
+GET /wp-ws68.php HTTP/1.1" 404
+GET /img.php HTTP/1.1" 404
+
+Bots. Varredura automatizada. Minha instância tava na internet há menos de 30 minutos e já tinham achado ela.
+Isso me fez perceber: monitoramento não é só ver se tá no ar. É saber quem tá batendo na porta, com que frequência, e se sua configuração aguenta o tranco.
+
+## Etapa 5: Conformidade com AWS Config
+
+Ativei o AWS Config pra rodar duas regras gerenciadas:
+required-tags — os recursos têm as tags obrigatórias?
+ec2-volume-inuse-check — os volumes EBS estão realmente anexados a alguma instância?
+Funcionou, mas com uma ressalva: o ambiente do lab tinha restrições de IAM. Quando tentei ver os Configuration Recorders, tomei um access denied:
+
+config:DescribeConfigurationRecorders — not authorized
+s3:ListAllMyBuckets — explicit deny
+
+## Tech Stack
 
 AWS Services
 
@@ -66,6 +133,23 @@ AWS Services
 
 <img src="https://img.shields.io/badge/Amazon%20EC2-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/Amazon%20CloudWatch-FF4F8B?style=for-the-badge&logo=amazoncloudwatch&logoColor=white"> <img src="https://img.shields.io/badge/CloudWatch%20Logs-FF4F8B?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/CloudWatch%20Agent-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/AWS%20Systems%20Manager-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/Amazon%20SNS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/Amazon%20EventBridge-FF4F8B?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/AWS%20Config-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/Amazon%20EBS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/IAM-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
 
+</p>
+
+EC2 — Amazon Linux + Apache HTTPD
+CloudWatch / CloudWatch Logs — métricas e centralização de logs
+CloudWatch Agent — coleta local (e dor de cabeça)
+EventBridge — detecção de eventos de infraestrutura
+SNS — notificações por e-mail
+AWS Config — compliance contínuo
+Systems Manager — acesso e troubleshooting
+IAM — controle (e negação) de permissões
+EBS — volumes avaliados pelo Config
+
+
+<p align="center">
+  <img src="arquitetura_solucao.png"
+       alt="Arquitetura da solução do LAB 186"
+       width="700">
 </p>
 
 
@@ -98,34 +182,29 @@ Esse ciclo de troubleshooting foi um dos principais aprendizados práticos desen
 O laboratório foi desenvolvido em cinco etapas, integrando monitoramento, observabilidade, coleta de logs, notificações, gerenciamento e conformidade em um ambiente AWS.
 
 
-## 1 - Monitoramento da infraestrutura
+## O que esse lab realmente me ensinou
 
-A primeira etapa teve como objetivo compreender o ambiente e identificar os recursos utilizados no monitoramento.
+Não foi "como usar o CloudWatch". Foi:
+Troubleshooting é 80% do trampo. O agente tava "ativo" e não funcionava. O problema era permissão de diretório. Coisa simples, mas que te faz perder tempo se não souber onde olhar.
+Logs contam histórias. Além de requests normais, eu vi tentativas de ataque em tempo real. Observabilidade não é luxo — é segurança.
+IAM é poder e dor. Uma política Deny invisível me bloqueou no Config. Entender como as policies se sobrepõem é essencial.
+Arquitetura no papel ≠ arquitetura na prática. O diagrama é lindo. Fazer o log chegar no CloudWatch é outra história.
 
-A instância Amazon EC2 Web Server foi utilizada como principal recurso computacional.
+## 🚧 Status
 
-Durante a análise foram observados:
+[x] Lab concluído
+[x] Troubleshooting documentado com comandos reais
+[x] Prints e evidências anexados
+[ ] Refazer isso tudo em Terraform (em breve)
 
-Estado operacional da instância;
-Métricas do EC2;
-Comportamento do servidor Web;
-Acessos HTTP;
-Arquivos de log;
-Configurações da infraestrutura.
-
-Essa etapa estabeleceu a base para as atividades de observabilidade realizadas nas etapas seguintes.
-
+## 🌐 Vamos conversar?
+Se você é recrutador, mentor ou alguém também quebrando a cabeça com CloudWatch Agent, bora trocar ideia.
+💼 LinkedIn: linkedin.com/in/eliana-diniz
+📧 E-mail: eliana.dinizsilva@gmail.com
 
 
 ## 2️ - Monitoramento e notificações
 
-Nesta etapa foi implementado um mecanismo para detectar alterações no estado da infraestrutura e gerar notificações.
-
-<p align="center">
-  <img src="eventbridge_sns_flow.png"
-       alt="Fluxo de eventos entre Amazon EC2, EventBridge, Amazon SNS e e-mail"
-       width="450">
-</p>
 
 
 A regra foi configurada para identificar alterações nos estados:
