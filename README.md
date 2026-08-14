@@ -110,12 +110,16 @@ GET /icons/apache_pb2.gif HTTP/1.1" 200
 GET / HTTP/1.1" 403
 GET /pagina-que-nao-existe HTTP/1.1" 404
 
+
+
 ## Mas também vi isso:
 
 GET /wp-content/plugins/... HTTP/1.1" 404
 GET /admin.php HTTP/1.1" 404
 GET /wp-ws68.php HTTP/1.1" 404
 GET /img.php HTTP/1.1" 404
+
+
 
 Bots. Varredura automatizada. Minha instância tava na internet há menos de 30 minutos e já tinham achado ela.
 Isso me fez perceber: monitoramento não é só ver se tá no ar. É saber quem tá batendo na porta, com que frequência, e se sua configuração aguenta o tranco.
